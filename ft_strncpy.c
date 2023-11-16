@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abuchet <abuchet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 13:21:16 by abuchet           #+#    #+#             */
-/*   Updated: 2023/11/14 15:52:09 by abuchet          ###   ########.fr       */
+/*   Created: 2023/11/14 15:46:43 by abuchet           #+#    #+#             */
+/*   Updated: 2023/11/14 15:47:00 by abuchet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+size_t	ft_strncpy(char *dst, const char *src, size_t size)
+{
+	size_t	len;
 
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-char	*ft_strdup(const char *s);
+	len = 0;
+	if (size == 0)
+	{
+		while (src[len])
+			len++;
+		return (len);
+	}
+	while (len < size - 1 && src[len])
+	{
+		dst[len] = src[len];
+		len++;
+	}
+	if (len < size)
+		dst[len] = '\0';
+	while (src[len])
+		len++;
+	return (len);
+}
